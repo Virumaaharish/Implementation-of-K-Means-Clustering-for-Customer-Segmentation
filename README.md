@@ -8,105 +8,83 @@ To write a program to implement the K Means Clustering for Customer Segmentation
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1.Import pandas and matplot libraries.
+1. Import pandas and matplotlib.pyplot
 
-2.import Kmeans algorithm to solve customer segmentation.
+2. Read the dataset and transform it
 
-3.Using the for loop cluster the given data
+3. Import KMeans and fit the data in the model
 
-4.Predict the output and plot data graphs.
+4. Plot the Cluster graph
 
-5.Display the outputs
 ## Program:
-```
-/*
+
 Program to implement the K Means Clustering for Customer Segmentation.
+
 Developed by: KAVINRAJ.S
+
 RegisterNumber:  212223100019
-*/
 
+```
 import pandas as pd
-
 import matplotlib.pyplot as plt
 
-data=pd.read_csv("/content/Mall_Customers (1).csv")
-
+data = pd.read_csv(r"C:\Users\admin\Downloads\Mall_Customers.csv")
 data.head()
-
 data.info()
-
 data.isnull().sum()
 
 from sklearn.cluster import KMeans
-
-wcss=[]
+wcss = []
 
 for i in range(1,11):
-
-kmeans=KMeans(n_clusters=i,init="k-means++")
-
-kmeans.fit(data.iloc[:,3:])
-
-wcss.append(kmeans.inertia_)
+    kmeans = KMeans(n_clusters=i, init = "k-means++")
+    kmeans.fit(data.iloc[:,3:])
+    wcss.append(kmeans.inertia_)
 
 plt.plot(range(1,11),wcss)
-
-plt.xlabel("No_of_Clusters")
-
+plt.xlabel("No. of clusters")
 plt.ylabel("wcss")
+plt.title("Elbow method")
 
-plt.title("Elbow Method")
-
-km=KMeans(n_clusters=5)
-
+km = KMeans(n_clusters=5)
 km.fit(data.iloc[:,3:])
 
-y_pred=km.predict(data.iloc[:,3:])
-
+y_pred = km.predict(data.iloc[:,3:])
 y_pred
 
-data["cluster"]=y_pred
+data["cluster"] = y_pred
 
-df0=data[data["cluster"]==0]
-
-df1=data[data["cluster"]==1]
-
-df2=data[data["cluster"]==2]
-
-df3=data[data["cluster"]==3]
-
-df4=data[data["cluster"]==4]
-
-plt.scatter(df0["Annual Income (k$)"],df0["Spending Score (1-100)"],c="red",label="cluster0")
-
-plt.scatter(df1["Annual Income (k$)"],df1["Spending Score (1-100)"],c="black",label="cluster1")
-
-plt.scatter(df2["Annual Income (k$)"],df2["Spending Score (1-100)"],c="blue",label="cluster2")
-
-plt.scatter(df3["Annual Income (k$)"],df3["Spending Score (1-100)"],c="green",label="cluster3")
-
-plt.scatter(df4["Annual Income (k$)"],df4["Spending Score (1-100)"],c="magenta",label="cluster4")
+df0 = data[data["cluster"]==0]
+df1 = data[data["cluster"]==1]
+df2 = data[data["cluster"]==2]
+df3 = data[data["cluster"]==3]
+df4 = data[data["cluster"]==4]
+plt.scatter(df0["Annual Income (k$)"],df0["Spending Score (1-100)"],c="red",label="cluster 0")
+plt.scatter(df1["Annual Income (k$)"],df1["Spending Score (1-100)"],c="black",label="cluster 1")
+plt.scatter(df2["Annual Income (k$)"],df2["Spending Score (1-100)"],c="blue",label="cluster 2")
+plt.scatter(df3["Annual Income (k$)"],df3["Spending Score (1-100)"],c="green",label="cluster 3")
+plt.scatter(df4["Annual Income (k$)"],df4["Spending Score (1-100)"],c="magenta",label="cluster 4")
 
 plt.legend()
+plt.title("customer segmentation")
 
-plt.title("Customer Segment")
 ```
 
 ## Output:
-#### 1.DATA.HEAD():
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/959f8137-6c3e-4e83-a2e4-77d635a98979)
-#### 2.DATA.INF0():
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/74112410-0e34-43af-a090-b66b320aed5d)
-#### 3.DATA.ISNULL().SUM():
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/61bdfd0e-0b72-43b9-8a0d-f98abb522a31)
-#### 4.PLOT USING ELBOW METHOD:
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/8421bc24-c20e-443e-8435-7c666f191eef)
-#### 5.K-MEANS CLUSTERING:
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/f655ce4c-9ea7-4b86-9c38-a1b865ea4dd1)
-#### 6.Y_PRED ARRAY:
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/9579fb20-5a35-4184-9137-6a20b5f10a74)
-#### 7.CUSTOMER SEGMENT:
-![image](https://github.com/POZHILANVD/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144870498/cb29fade-eab7-42c4-9dc1-5b9c8c4b449d)
+
+![image](https://github.com/user-attachments/assets/f7d39f9d-bf81-4101-b7ad-16e88c1df2d2)
+
+![image](https://github.com/user-attachments/assets/c66dbd56-89e9-42db-a22f-ae6f7531150e)
+
+![image](https://github.com/user-attachments/assets/71a3ddd0-fa52-4a55-b0e1-399fbd253d70)
+
+![image](https://github.com/user-attachments/assets/0898f356-d7f5-482d-bf3e-b6ebd1d4d087)
+
+![image](https://github.com/user-attachments/assets/fa80dedc-e841-4d48-9f95-b62a745951ec)
+
+![image](https://github.com/user-attachments/assets/65f4984a-aab3-4a46-a3d3-617f97a03be0)
+
+![image](https://github.com/user-attachments/assets/51c2e9d3-585c-493d-b75c-d981c32d34ae)
 
 ## Result:
 Thus the program to implement the K Means Clustering for Customer Segmentation is written and verified using python programming.
